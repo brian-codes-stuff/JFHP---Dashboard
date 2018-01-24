@@ -9,7 +9,7 @@
   };
   firebase.initializeApp(config);
 
- var db = firebase.database();
+  var db = firebase.database();
   var auth = firebase.auth();
 
   var email = null;
@@ -35,9 +35,9 @@
       };
 
       // Initialize the FirebaseUI Widget using Firebase.
-  //    var ui = new  firebaseui.auth.AuthUI(firebase.auth());
+      var ui = new  firebaseui.auth.AuthUI(firebase.auth());
       // The start method will wait until the DOM is loaded.
-     // ui.start('#firebaseui-auth-container', uiConfig);
+     ui.start('#firebaseui-auth-container', uiConfig);
 
 var ref = db.ref('users');
 ref.on('value', gotData, errData);
