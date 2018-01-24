@@ -39,7 +39,6 @@
       // The start method will wait until the DOM is loaded.
      // ui.start('#firebaseui-auth-container', uiConfig);
 
-
 var ref = db.ref('users');
 ref.on('value', gotData, errData);
 
@@ -53,6 +52,140 @@ function gotData(data) {
         var reports = users[k].reports;
     //    console.log(reports);
         var reportid = Object.keys(reports);
+    //    console.log(reportid);
+        for (var ri = 0; ri < reportid.length; ri++) {
+            var m = reportid[ri];
+            var theName = reports[m].name;
+            var theDate = reports[m].date;
+            var theLeader = reports[m].teamLeader;
+            var theLocation = reports[m].location;
+            var theContacts = reports[m].contacts;
+            var theDecisions = reports[m].decisions;
+            var theFollowUps = reports[m].followUps;
+           // console.log(theName, theDate, theLeader, theLocation, theContacts, theDecisions, theFollowUps);
+
+            console.log(m);
+        
+            var content = '';
+            var val = data.val();
+                content +='<tr>';
+                content += '<td>' + theName + '</td>';
+                content += '<td>' + theDate + '</td>';
+                content += '<td>' + theLeader + '</td>';
+                content += '<td>' + theLocation + '</td>';
+                content += '<td>' + theContacts + '</td>';
+                content += '<td>' + theDecisions + '</td>';
+                content += '<td>' + theFollowUps+ '</td>';
+                content += '</tr>';
+            };
+        
+        $('#ex-table').append(content);
+            
+            
+        }
+    }
+
+
+function errData(err) {
+    console.log('Error!');
+     console.log(err);
+}
+
+
+            
+           m.forEach(function(entry) {
+    console.log(entry);
+});
+
+/*
+var query = firebase.database().ref("users/reports").orderByKey();
+query.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+
+       console.log(childSnapshot.val());
+    });
+  });
+    
+*/
+
+/*
+var ref = firebase.database().ref();
+
+ref.on("value", function(snapshot) {
+   console.log(snapshot.val());
+}, function (error) {
+   console.log("Error: " + error.code);
+});
+
+*/
+
+
+/*
+var theReports = firebase.database().ref("users");
+
+theReports.on("child_added", function(data) {
+   var newReport = data.val();
+   console.log("Report Name: " + newReport.name);
+   console.log("ReportDate: " + newReport.date);
+   console.log("Team Leader: " + newReport.teamLeader);
+   
+});
+
+*/
+//ref.orderByChild("reports").limitToLast(100).on("child_added", function(snapshot) 
+// var showData = function() 
+
+
+
+ /* var theName = $("#Name").val();
+  var theDate = $("#Date").val();
+  var theLeader = $("#Leader").val();
+  var theLocation = $("#Location").val();
+  var theContacts = $("#Contacts").val();
+  var theDecisions = $("#Decisions").val();
+  var theFollowUps = $("#FollowUps").val();
+
+  reports.push({
+    "theName": name,
+    "theDate": date,
+    "theLeader": teamLeader,
+    "theLocation": location,
+    "theContacts": contacts,
+    "theDecisions": decisions,
+    "theFollowUps": followUps
+
+  });
+  */
+
+
+
+/*
+
+var ref = firebase.app().database().ref();
+var peopleRef = ref.child('users/reports');
+peopleRef.on('value', gotData, errData);
+
+function gotData(data) {
+//    console.log(data.val());   
+    var users = data.val();
+    var keys = Object.keys(users);
+ 
+
+keys.forEach(function(k) {
+
+    for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        var reports = users[k].reports;
+    //    console.log(reports);
+        var reportid = Object.keys(reports);
+console.log(reportid);
+
+
+
+reportid.forEach(function(k) {
     //    console.log(reportid);
         for (var ri = 0; ri < reportid.length; ri++) {
             var m = reportid[ri];
@@ -80,9 +213,12 @@ function gotData(data) {
             };
         
         $('#ex-table').append(content);
-            
+         });   
             
         }
+
+ }); 
+
     }
 
 
@@ -90,6 +226,8 @@ function errData(err) {
     console.log('Error!');
      console.log(err);
 }
+
+*/
 
 /*
 function generateReportElements(snapshot) {

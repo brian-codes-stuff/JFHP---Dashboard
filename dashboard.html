@@ -3,31 +3,78 @@
   <head>
     <meta charset="UTF-8">
     <title>Sample FirebaseUI App</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="script.js"></script>
-    
-   
+    <script src="script.js"></script>  
   </head>
-  <body>
-    <h1>JFHP Dashboard</h1>
-   
+<body>
+  <div class="row">
+    <div class="header">
+        <div class="nav-bar">
+          <div class="logo">
+            <img src="images/logo.png"/>
+          </div>
+          <div class="user">
+            <img src="images/user.png"/>
+            <span class="username">Welcome!</span>
+          </div>
+          <div class="filters">
+            <div class="dropdown team">
+              <button onclick="myFunction()" class="dropbtn">Choose Team</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+            </div>
+          </div><!--END filters-->
+        </div><!--END nav-bar-->
+    </div><!--END header-->
+    <div class="data">
+        <div class="table-fill">
+          <h3>Reports For:<span class="team-name"></span></h3>
       <table style="width:100%" id="ex-table">
-  <tr id="tr">
-    <th>Report Name:</th>
-    <th>Date:</th> 
-    <th>Team Leader:</th>
-    <th>Location:</th>
-    <th>Contacts:</th>
-    <th>Decisions:</th>
-    <th>Follow Ups:</th>
- </table> 
-    
-   
- 
-   
+        <tr id="tr">
+          <th>Report Name:</th>
+          <th>Date:</th> 
+          <th>Team Leader:</th>
+          <th>Location:</th>
+          <th>Contacts:</th>
+          <th>Decisions:</th>
+          <th>Follow Ups:</th>
+      </table>  
 
+      <span id="reportname"></span>
+        </div>
+        <div class="table-fill">
+          <h3>Preaching Points For:<span class="team-name"></span></h3>
+  
+        </div>
+    </div><!--END data-->
+  </div>   
+  <script type="text/javascript">
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
 
-  </body>
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+  </script>
+</body>
 </html>
