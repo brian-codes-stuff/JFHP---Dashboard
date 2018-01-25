@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <title>Sample FirebaseUI App</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
    <link rel="stylesheet" href="style.css">
@@ -35,23 +34,35 @@
     </div><!--END header-->
     <div class="data">
         <div class="table-fill">
-          <h3>Reports For:<span class="team-name"></span></h3>
+          <h3>Reports For:<span class="team-name"></span>
+</span></h3>
+<div id="testing"></div>
+
       <table style="width:100%" id="ex-table">
         <tr id="tr">
-          <th>Report Name:</th>
+          <th><strong>Report Name:</strong></th>
           <th>Date:</th> 
           <th>Team Leader:</th>
           <th>Location:</th>
           <th>Contacts:</th>
           <th>Decisions:</th>
           <th>Follow Ups:</th>
+        </tr>
       </table>  
 
       <span id="reportname"></span>
         </div>
         <div class="table-fill">
           <h3>Preaching Points For:<span class="team-name"></span></h3>
-  
+             <table style="width:100%" id="pp-table">
+        <tr id="tr">
+          <th>Report Name:</th>
+          <th>Date:</th> 
+          <th>Team Leader:</th>
+          <th>Location:</th>
+          <th>Attendance:</th>
+        </tr>
+      </table>  
         </div>
     </div><!--END data-->
   </div>   
@@ -65,35 +76,7 @@ function myFunction() {
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
-=======
-    <title>JFHP - Dashboard</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
-    <script src="script.js"></script>
-    
-   
-  </head>
-  <body>
-    <h1>JFHP Dashboard</h1>
-
-    <div id="myList"></div>
-   
-      <table style="width:100%" id="ex-table">
-  <tr id="tr">
-    <th>Report Name:</th>
-    <th>Date:</th> 
-    <th>Team Leader:</th>
-    <th>Location:</th>
-    <th>Contacts:</th>
-    <th>Decisions:</th>
-    <th>Follow Ups:</th>
- </table> 
-    
-  
->>>>>>> fc3ce2c6c7f318b39de995c6220c8ce0250f4e23
 
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;

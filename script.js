@@ -35,9 +35,11 @@
       };
 
       // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new  firebaseui.auth.AuthUI(firebase.auth());
+      // var ui = new  firebaseui.auth.AuthUI(firebase.auth());
       // The start method will wait until the DOM is loaded.
-     ui.start('#firebaseui-auth-container', uiConfig);
+    // ui.start('#firebaseui-auth-container', uiConfig);
+
+     
 
 var ref = db.ref('users');
 ref.on('value', gotData, errData);
@@ -62,21 +64,82 @@ function gotData(data) {
             var theContacts = reports[m].contacts;
             var theDecisions = reports[m].decisions;
             var theFollowUps = reports[m].followUps;
-           // console.log(theName, theDate, theLeader, theLocation, theContacts, theDecisions, theFollowUps);
-
-            console.log(m);
+            console.log(theName, theDate, theLeader, theLocation, theContacts, theDecisions, theFollowUps);
         
+
+
             var content = '';
             var val = data.val();
-                content +='<tr>';
-                content += '<td>' + theName + '</td>';
-                content += '<td>' + theDate + '</td>';
-                content += '<td>' + theLeader + '</td>';
-                content += '<td>' + theLocation + '</td>';
-                content += '<td>' + theContacts + '</td>';
-                content += '<td>' + theDecisions + '</td>';
-                content += '<td>' + theFollowUps+ '</td>';
-                content += '</tr>';
+            content += '<tr>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theContacts + '</td>' + '<td>' + theDecisions + '</td>' + '<td>' + theFollowUps + '</td>' + '</tr>';
+
+             $('#ex-table').append(content);
+
+
+
+
+          //  var content = '';
+           // var val = data.val();
+            //    content +='<tr>';
+             //   content += '<td>' + theName + '</td>';
+               // content += '<td>' + theDate + '</td>';
+             //   content += '<td>' + theLeader + '</td>';
+              //  content += '<td>' + theLocation + '</td>';
+              //  content += '<td>' + theContacts + '</td>';
+              //  content += '<td>' + theDecisions + '</td>';
+              //  content += '<td>' + theFollowUps+ '</td>';
+              //  content += '</tr>';
+            };
+        
+            
+            
+        }
+    }
+
+ref.on('value', gotPP, errData);
+
+function gotPP(data) {
+//    console.log(data.val());   
+    var users = data.val();
+    var ppkeys = Object.keys(users);
+  //  console.log(keys);
+    for (var i = 0; i < ppkeys.length; i++) {
+        var k = ppkeys[i];
+        var preachingpoints = users[k].preachingpoints;
+    //    console.log(reports);
+        var ppid = Object.keys(preachingpoints);
+    //    console.log(reportid);
+        for (var ri = 0; ri < ppid.length; ri++) {
+            var p = ppid[ri];
+            var theName = preachingpoints[p].name;
+            var theDate = preachingpoints[p].date;
+            var theLeader = preachingpoints[p].teamLeader;
+            var theLocation = preachingpoints[p].location;
+            var theAttendance = preachingpoints[p].attendance;
+           
+            console.log(theName, theDate, theLeader, theLocation, theAttendance);
+        
+
+
+            var content = '';
+            var val = data.val();
+            content += '<tr>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theAttendance + '</td>';
+
+             $('#pp-table').append(content);
+
+
+
+
+          //  var content = '';
+           // var val = data.val();
+            //    content +='<tr>';
+             //   content += '<td>' + theName + '</td>';
+               // content += '<td>' + theDate + '</td>';
+             //   content += '<td>' + theLeader + '</td>';
+              //  content += '<td>' + theLocation + '</td>';
+              //  content += '<td>' + theContacts + '</td>';
+              //  content += '<td>' + theDecisions + '</td>';
+              //  content += '<td>' + theFollowUps+ '</td>';
+              //  content += '</tr>';
             };
         
         $('#ex-table').append(content);
@@ -86,16 +149,21 @@ function gotData(data) {
     }
 
 
+
+
+
+
 function errData(err) {
     console.log('Error!');
      console.log(err);
 }
 
 
+
             
-           m.forEach(function(entry) {
-    console.log(entry);
-});
+  //         m.forEach(function(entry) {
+  //  console.log(entry);
+// });
 
 /*
 var query = firebase.database().ref("users/reports").orderByKey();
