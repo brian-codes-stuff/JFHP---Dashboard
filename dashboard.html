@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>JFHP - Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
-   <link rel="stylesheet" href="/style.css">
+   <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="/script.js"></script>  
+    <script src="script.js"></script>  
   </head>
 <body>
   <div class="row">
@@ -113,6 +113,15 @@ window.onclick = function(event) {
 }
   </script>
   <script>
+      var config = {
+    apiKey: "AIzaSyCdIfXmZNpv1eUFQnvIUuiLDqYNKyJQ9oE",
+    authDomain: "jfhp-reporting-app.firebaseapp.com",
+    databaseURL: "https://jfhp-reporting-app.firebaseio.com",
+    projectId: "jfhp-reporting-app",
+    storageBucket: "jfhp-reporting-app.appspot.com",
+    messagingSenderId: "20248703755"
+  };
+  firebase.initializeApp(config);
      var db = firebase.database();
 
 var ref = db.ref('users');
