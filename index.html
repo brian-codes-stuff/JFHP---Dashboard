@@ -16,5 +16,24 @@
          Your app may use that space for branding, controls and other customizations.-->
     <h1>JFHP - Please Sign In</h1>
     <div id="firebaseui-auth-container"></div>
+    <script type="text/javascript">
+    	// FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'dashboard.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+         
+        ],
+        // Terms of service url.
+        tosUrl: 'https://www.brianalonzo.com/terms'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+       var ui = new  firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
 </body>
 </html>
