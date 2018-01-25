@@ -11,6 +11,7 @@
   </head>
 <body>
   <div class="row">
+     <div id="firebaseui-auth-container"></div>
     <div class="header">
         <div class="nav-bar">
           <div class="logo">
@@ -111,108 +112,6 @@ window.onclick = function(event) {
     }
   }
 }
-  </script>
-  <script>
-
-  
-     var db = firebase.database();
-
-var ref = db.ref('users');
-
-ref.on('value', gotData, errData);
-
-function gotData(data) {
-//    console.log(data.val());   
-    var users = data.val();
-    var keys = Object.keys(users);
-  // console.log(keys);
-    for (var i = 0; i < keys.length; i++) {
-        var k = keys[i];
-        var reports = users[k].reports;
-    //    console.log(reports);
-        var reportid = Object.keys(reports);
-    //    console.log(reportid);
-        for (var ri = 0; ri < reportid.length; ri++) {
-            var m = reportid[ri];
-            var theName = reports[m].name;
-            var theDate = reports[m].date;
-            var theLeader = reports[m].teamLeader;
-            var theLocation = reports[m].location;
-            var theContacts = reports[m].contacts;
-            var theDecisions = reports[m].decisions;
-            var theFollowUps = reports[m].followUps;
-          //  console.log(theName, theDate, theLeader, theLocation, theContacts, theDecisions, theFollowUps);
-       
-        
-
-
-            var content = '';
-            var val = data.val();
-            content += '<tr>' + '<td>' + k + '</td>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theContacts + '</td>' + '<td>' + theDecisions + '</td>' + '<td>' + theFollowUps + '</td>' + '</tr>';
-
-             $('#ex-table').append(content);
-
-              var userSelect = '';
-             userSelect += '<a href="' + k + '">' +  k + '</a></div>';
-             $('#myDropdown').append(userSelect);
-
-            };
-        
-            
-            
-        }
-    }
-
-ref.on('value', gotPP, errData);
-
-function gotPP(data) {
-//    console.log(data.val());   
-    var users = data.val();
-    var ppkeys = Object.keys(users);
-  //  console.log(keys);
-    for (var i = 0; i < ppkeys.length; i++) {
-        var k = ppkeys[i];
-        var preachingpoints = users[k].preachingpoints;
-    //    console.log(reports);
-        var ppid = Object.keys(preachingpoints);
-    //    console.log(reportid);
-        for (var ri = 0; ri < ppid.length; ri++) {
-            var p = ppid[ri];
-            var theName = preachingpoints[p].name;
-            var theDate = preachingpoints[p].date;
-            var theLeader = preachingpoints[p].teamLeader;
-            var theLocation = preachingpoints[p].location;
-            var theAttendance = preachingpoints[p].attendance;
-           
-      //      console.log(theName, theDate, theLeader, theLocation, theAttendance);
-        
-
-
-            var content = '';
-            var val = data.val();
-            content += '<tr>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theAttendance + '</td>';
-
-             $('#pp-table').append(content);
-
-
-
-
-            };
-        
-        $('#ex-table').append(content);
-            
-            
-        }
-    }
-
-
-function errData(err) {
-    console.log('Error!');
-     console.log(err);
-}
-
-
-
   </script>
 </body>
 </html>
