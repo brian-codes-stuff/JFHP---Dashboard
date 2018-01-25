@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Sample FirebaseUI App</title>
+    <title>JFHP - Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,11 +32,21 @@
     </div><!--END header-->
     <div class="data">
         <div class="table-fill">
-          <h3>Reports For:<span class="team-name"></span>
-</span></h3>
-<div id="testing"></div>
 
-      <table style="width:100%" id="ex-table">
+            <ul class="tabs" role="tablist">
+    <li>
+        <input type="radio" name="tabs" id="tab1" checked />
+        <label for="tab1" 
+               role="tab" 
+               aria-selected="true" 
+               aria-controls="panel1" 
+               tabindex="0">View All Reports</label>
+        <div id="tab-content1" 
+             class="tab-content" 
+             role="tabpanel" 
+             aria-labelledby="description" 
+             aria-hidden="false">
+           <table style="width:100%" id="ex-table">
         <tr id="tr">
           <th>User ID:</th>
           <th>Report Name:</th>
@@ -48,11 +58,21 @@
           <th>Follow Ups:</th>
         </tr>
       </table>  
-
-      <span id="reportname"></span>
         </div>
-        <div class="table-fill">
-          <h3>Preaching Points For:<span class="team-name"></span></h3>
+    </li>
+  
+    <li>
+        <input type="radio" name="tabs" id="tab2" />
+        <label for="tab2"
+               role="tab" 
+               aria-selected="false" 
+               aria-controls="panel2" 
+               tabindex="0">View All Preaching Points</label>
+        <div id="tab-content2" 
+             class="tab-content"
+             role="tabpanel" 
+             aria-labelledby="specification" 
+             aria-hidden="true">
              <table style="width:100%" id="pp-table">
         <tr id="tr">
           <th>Report Name:</th>
@@ -63,6 +83,10 @@
         </tr>
       </table>  
         </div>
+    </li>
+</ul>
+
+
     </div><!--END data-->
   </div>   
   <script type="text/javascript">
@@ -87,6 +111,106 @@ window.onclick = function(event) {
     }
   }
 }
+  </script>
+  <script>
+    
+
+var ref = db.ref('users');
+
+ref.on('value', gotData, errData);
+
+function gotData(data) {
+//    console.log(data.val());   
+    var users = data.val();
+    var keys = Object.keys(users);
+  // console.log(keys);
+    for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        var reports = users[k].reports;
+    //    console.log(reports);
+        var reportid = Object.keys(reports);
+    //    console.log(reportid);
+        for (var ri = 0; ri < reportid.length; ri++) {
+            var m = reportid[ri];
+            var theName = reports[m].name;
+            var theDate = reports[m].date;
+            var theLeader = reports[m].teamLeader;
+            var theLocation = reports[m].location;
+            var theContacts = reports[m].contacts;
+            var theDecisions = reports[m].decisions;
+            var theFollowUps = reports[m].followUps;
+          //  console.log(theName, theDate, theLeader, theLocation, theContacts, theDecisions, theFollowUps);
+       
+        
+
+
+            var content = '';
+            var val = data.val();
+            content += '<tr>' + '<td>' + k + '</td>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theContacts + '</td>' + '<td>' + theDecisions + '</td>' + '<td>' + theFollowUps + '</td>' + '</tr>';
+
+             $('#ex-table').append(content);
+
+              var userSelect = '';
+             userSelect += '<a href="' + k + '">' +  k + '</a></div>';
+             $('#myDropdown').append(userSelect);
+
+            };
+        
+            
+            
+        }
+    }
+
+ref.on('value', gotPP, errData);
+
+function gotPP(data) {
+//    console.log(data.val());   
+    var users = data.val();
+    var ppkeys = Object.keys(users);
+  //  console.log(keys);
+    for (var i = 0; i < ppkeys.length; i++) {
+        var k = ppkeys[i];
+        var preachingpoints = users[k].preachingpoints;
+    //    console.log(reports);
+        var ppid = Object.keys(preachingpoints);
+    //    console.log(reportid);
+        for (var ri = 0; ri < ppid.length; ri++) {
+            var p = ppid[ri];
+            var theName = preachingpoints[p].name;
+            var theDate = preachingpoints[p].date;
+            var theLeader = preachingpoints[p].teamLeader;
+            var theLocation = preachingpoints[p].location;
+            var theAttendance = preachingpoints[p].attendance;
+           
+      //      console.log(theName, theDate, theLeader, theLocation, theAttendance);
+        
+
+
+            var content = '';
+            var val = data.val();
+            content += '<tr>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theAttendance + '</td>';
+
+             $('#pp-table').append(content);
+
+
+
+
+            };
+        
+        $('#ex-table').append(content);
+            
+            
+        }
+    }
+
+
+function errData(err) {
+    console.log('Error!');
+     console.log(err);
+}
+
+
+
   </script>
 </body>
 </html>
