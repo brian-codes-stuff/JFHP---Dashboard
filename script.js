@@ -39,6 +39,10 @@
       // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
 
+
+// var teams = db.ref('users').orderByChild('TeamID').equalTo('01');
+
+
      
 
 var ref = db.ref('users');
@@ -52,12 +56,20 @@ function gotData(data) {
   // console.log(keys);
     for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
+
+ // var userSelect = '';
+   //          userSelect += '<option value="' + k + '">' +  k + '</option>';
+     //        $('#myDropdown').append(userSelect);
+
+
+
         var reports = users[k].reports;
     //    console.log(reports);
         var reportid = Object.keys(reports);
     //    console.log(reportid);
         for (var ri = 0; ri < reportid.length; ri++) {
             var m = reportid[ri];
+            var theTeam = reports[m].TeamID;
             var theName = reports[m].name;
             var theDate = reports[m].date;
             var theLeader = reports[m].teamLeader;
@@ -72,13 +84,13 @@ function gotData(data) {
 
             var content = '';
             var val = data.val();
-            content += '<tr>' + '<td>' + k + '</td>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td>' + theContacts + '</td>' + '<td>' + theDecisions + '</td>' + '<td>' + theFollowUps + '</td>' + '</tr>';
+            content += '<tr class="collapse " id="' + theTeam + '">' + '<td>' + theTeam + '</td>' + '<td>' + theName + '</td>' + '<td>' + theDate + '</td>' + '<td>' + theLeader + '</td>' + '<td>' + theLocation + '</td>' + '<td class="contacts">' + theContacts + '</td>' + '<td class="decisions">' + theDecisions + '</td>' + '<td class="followups">' + theFollowUps + '</td>' + '</tr>';
 
              $('#ex-table').append(content);
 
-              var userSelect = '';
-             userSelect += '<a href="' + k + '">' +  k + '</a></div>';
-             $('#myDropdown').append(userSelect);
+
+            
+
 
             };
         
@@ -86,6 +98,7 @@ function gotData(data) {
             
         }
     }
+
 
 ref.on('value', gotPP, errData);
 

@@ -19,6 +19,13 @@ margin:0;
 font-family: 'Work Sans', sans-serif;
 }
 
+#teamNameTitle {
+  font-size: 34px;
+  color: #1b1168;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
 .row {
 	display: block;
 	widows: 100%;

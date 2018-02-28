@@ -25,10 +25,71 @@
           </div>
           <div class="filters">
             <div class="dropdown team">
-              <button onclick="myFunction()" class="dropbtn">Choose Team</button>
-            <div id="myDropdown" class="dropdown-content">
-              
-            </div>
+           <!--   <button onclick="myFunction()" class="dropbtn">Choose Team</button> -->
+            <select onchange="chooseTeam()" value="choose team" id="myDropdown" class="dropbtn">
+              <option>Choose Team</option>
+               <option id="" value="01">Rusty's Team</option>
+                <option value="02">Daniel's Team</option>
+
+            </select>
+            <script>
+               function chooseTeam(){
+
+          var input, filter, table, tr, td, i;
+  input = document.getElementById("myDropdown");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ex-table");
+  tr = table.getElementsByTagName("tr");
+  teamNameTitle = document.getElementById("teamName");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+
+var option_user_selection = myDropdown.options[ myDropdown.selectedIndex ].text
+console.log(option_user_selection);
+document.getElementById('teamNameTitle').innerHTML = option_user_selection;
+
+
+var contactSum = 0;
+$('.contacts').each(function()
+{
+    contactSum += parseFloat($(this).text());
+});
+
+document.getElementById('contactTotals').innerHTML = contactSum;
+
+var decisionSum = 0;
+$('.decisions').each(function()
+{
+    decisionSum += parseFloat($(this).text());
+});
+
+document.getElementById('decisionTotals').innerHTML = decisionSum;
+
+var followupSum = 0;
+$('.followups').each(function()
+{
+    followupSum += parseFloat($(this).text());
+});
+
+document.getElementById('followupTotals').innerHTML = followupSum;
+
+
+
+    }     
+         
+
+
+            </script>
             </div>
           </div><!--END filters-->
         </div><!--END nav-bar-->
@@ -49,9 +110,10 @@
              role="tabpanel" 
              aria-labelledby="description" 
              aria-hidden="false">
+             <h2 id="teamNameTitle">All Teams</h2>
            <table style="width:100%" id="ex-table">
         <tr id="tr">
-          <th>User ID:</th>
+          <th>Team ID:</th>
           <th>Report Name:</th>
           <th>Date:</th> 
           <th>Team Leader:</th>
@@ -60,7 +122,16 @@
           <th>Decisions:</th>
           <th>Follow Ups:</th>
         </tr>
+
       </table>  
+
+
+
+
+      <div>Total Contacts: <span id="contactTotals"></span></div>
+       <div>Total Contacts: <span id="decisionTotals"></span></div>
+        <div>Total Contacts: <span id="followupTotals"></span></div>
+  
         </div>
     </li>
   
@@ -84,6 +155,7 @@
           <th>Location:</th>
           <th>Attendance:</th>
         </tr>
+
       </table>  
         </div>
     </li>
