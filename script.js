@@ -1,11 +1,11 @@
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCdIfXmZNpv1eUFQnvIUuiLDqYNKyJQ9oE",
+    apiKey: "HIDDEN",
     authDomain: "jfhp-reporting-app.firebaseapp.com",
     databaseURL: "https://jfhp-reporting-app.firebaseio.com",
     projectId: "jfhp-reporting-app",
     storageBucket: "jfhp-reporting-app.appspot.com",
-    messagingSenderId: "20248703755"
+    messagingSenderId: "HIDDEN"
   };
   firebase.initializeApp(config);
 
